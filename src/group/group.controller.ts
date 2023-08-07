@@ -1,10 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { Db, ObjectId } from 'mongodb';
 import { GroupDoc, GroupNoId } from '../models';
+import { AuthService } from '../auth/auth.service';
 
 @Controller('group')
 export class GroupController {
-  constructor(private readonly db: Db) {}
+  constructor(private readonly db: Db, private readonly auth: AuthService) {}
 
   @Post()
   async createGroup(@Body() group: GroupNoId): Promise<GroupDoc> {

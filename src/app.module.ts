@@ -7,6 +7,7 @@ import { UserService } from './user/user.service';
 import { UserController } from './user/user.controller';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { Db, MongoClient } from 'mongodb';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [],
@@ -24,6 +25,7 @@ import { Db, MongoClient } from 'mongodb';
         return client.db('together');
       },
     },
+    AuthService,
   ],
 })
 export class AppModule implements NestModule {
