@@ -1,11 +1,16 @@
+import { ObjectId } from 'mongodb';
+
 interface ModelBase {
-  _id: string;
+  _id: ObjectId;
 }
 
-interface User extends ModelBase {
+interface UserDoc {
+  _id: string; // this one's a string because I don't generate it.
   displayName: string;
 }
 
-interface Group extends ModelBase {
+interface GroupDoc extends ModelBase {
   name: string;
 }
+
+type GroupNoId = Omit<GroupDoc, '_id'>;

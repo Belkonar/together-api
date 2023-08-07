@@ -1,13 +1,15 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 import { User } from './auth/auth.decorator';
+import { Db } from 'mongodb';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly db: Db) {}
 
   @Get()
-  getHello(@User() user: string): string {
-    return user;
+  async getHello(@User() user: string): Promise<any> {
+    return {
+      hello: user,
+    };
   }
 }
